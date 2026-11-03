@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KHS Clubs — Find a club at school</title>
+  <meta name="description" content="Search every club at school: meeting times, sponsors, and how to join. No login, no accounts." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23424454'/%3E%3Cpath d='M8 22V10h2.4v10h5.6v2H8zm9.6-12h2.3v12h-2.3z' fill='%23fff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#clubs">Skip to clubs</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+        </span>
+        KHS Clubs
+      </p>
+      <p class="header-note">Sponsor-verified · Updated each semester</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <section id="clubs" aria-labelledby="clubs-heading">
+        <div class="section-header">
+          <h1 id="clubs-heading">Find a club.</h1>
+          <p>Every club at school, with when it meets, who sponsors it, and how to join.</p>
+        </div>
+
+        <div class="controls">
+          <div class="search-field">
+            <label for="club-search">Search clubs</label>
+            <input type="search" id="club-search" name="club-search" placeholder="Try “robotics” or “art”" autocomplete="off" />
+          </div>
+          <fieldset class="filter-group">
+            <legend>Filter by interest</legend>
+            <div class="chip-row" id="club-filters">
+              <button type="button" class="chip" data-category="All" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-category="Arts" aria-pressed="false">Arts</button>
+              <button type="button" class="chip" data-category="STEM" aria-pressed="false">STEM</button>
+              <button type="button" class="chip" data-category="Service" aria-pressed="false">Service</button>
+              <button type="button" class="chip" data-category="Competition" aria-pressed="false">Competition</button>
+              <button type="button" class="chip" data-category="Leadership" aria-pressed="false">Leadership</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <p class="result-count" id="club-count" aria-live="polite">Loading clubs…</p>
+
+        <ul class="card-grid" id="club-results" role="list"></ul>
+
+        <div class="empty-state" id="club-empty">
+          <h2>No clubs match that search</h2>
+          <p>Try a different word, or clear the interest filter — new clubs are added as sponsors verify them.</p>
+          <button type="button" class="chip" id="club-reset">Clear search and filters</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Listings are sample data.</strong> Before this site goes live, every club must be verified by its sponsor.</p>
+      <p>No accounts, no ads, no tracking — just a public directory. To add or correct a club, talk to the staff sponsor.</p>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

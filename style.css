@@ -1,0 +1,383 @@
+/* ============================================================
+   KHS Clubs — consolidated club directory
+   Palette from the slate "Gray" card: professional, structured,
+   trustworthy. Applied with the 60-30-10 rule:
+     60% — cool near-white field (#F5F6F8) and white surfaces
+     30% — slate tones: header #424454, text #3D405B,
+           muted #636B83, light slate surfaces #E9EBF0
+     10% — deep slate-navy accent #3D405B on interactive
+           highlights: active chips, links, focus
+   Font: Figtree — friendly, geometric, very legible on
+   low-DPI Chromebook screens.
+   ============================================================ */
+
+:root {
+  /* Type scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* 60% — dominant field */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+
+  /* 30% — secondary slate */
+  --color-surface-2: #e9ebf0;
+  --color-divider: oklch(from var(--color-text) l c h / 0.1);
+  --color-border: oklch(from var(--color-text) l c h / 0.16);
+  --color-header: #424454;
+  --color-text: #3d405b;
+  --color-text-muted: #636b83;
+
+  /* 10% — accent */
+  --color-accent: #3d405b;
+  --color-accent-soft: #dfe2ea;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-sm: 0 1px 2px oklch(0.25 0.02 280 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.25 0.02 280 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.25 0.02 280 / 0.12);
+
+  --content-default: 960px;
+
+  --font-display: 'Figtree', 'Trebuchet MS', sans-serif;
+  --font-body: 'Figtree', 'Trebuchet MS', sans-serif;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100%;
+  z-index: 100;
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--color-header);
+  color: #fff;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+  padding-block: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+}
+
+.brand-mark {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+}
+
+.brand-mark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.header-note {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: #b9bdcc;
+}
+
+/* ---------- Section ---------- */
+
+section {
+  padding-block: var(--space-10) var(--space-12);
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.section-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  max-width: 52ch;
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.search-field label,
+.filter-group legend {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.search-field input {
+  width: 100%;
+  min-height: 48px;
+  padding-block: 0;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--text-base);
+}
+
+.search-field input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.filter-group {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  min-height: 48px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.chip:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ---------- Result count ---------- */
+
+.result-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+/* ---------- Cards ---------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.club-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+}
+
+.club-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card-top h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-right: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.club-card > p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-1) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.detail-list dt {
+  font-weight: 700;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 0.15em;
+}
+
+.detail-list dd {
+  color: var(--color-text);
+}
+
+.card-link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.club-card > .verified {
+  font-size: var(--text-xs);
+  color: #5c637c;
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-10) var(--space-6);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+}
+
+.empty-state.visible {
+  display: flex;
+}
+
+.empty-state h2 {
+  color: var(--color-text);
+  font-size: var(--text-lg);
+}
+
+.empty-state p {
+  font-size: var(--text-sm);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  padding-block: var(--space-6);
+}
+
+.site-footer p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.site-footer p + p {
+  margin-top: var(--space-2);
+}
